@@ -192,6 +192,10 @@
         top: 70%;
     }
 
+    .container__content-location-img {
+        height: 209px;
+    }
+
     .footer__heading {
         font-size: 2.2rem;
     }
