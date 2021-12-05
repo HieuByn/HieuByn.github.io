@@ -189,7 +189,7 @@
     }
 
     .container__content-location-des {
-        top: 70%;
+        top: 60%;
     }
 
     .container__content-location-img {
@@ -199,6 +199,7 @@
     .footer__heading {
         font-size: 2.2rem;
     }
+
     .footer__social {
         margin-left: 30px;
     }
