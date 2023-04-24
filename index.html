@@ -177,18 +177,18 @@
 
                         <div class="header__guest">
                             <i class="header__guest-icon fas fa-user"></i>
-                            <input type="submit" value="Số khách" class="header__guest-title"></input>
-                            <div class="header__guest-selection">
+                            <button  class="header__guest-title" id="dropdownButton">Số khách</button>
+                            <div class="header__guest-selection" id="selection">
                                 <ul class="header__guest-list">
                                     <li class="header__guest-item">
                                         <span class="header__guest-wrapper">
                                             <span class="header__guest-name">Người lớn</span>
                                         </span>
-                                        <div class="header__guest-button-left">
+                                        <div id="decrement1" class="header__guest-button-left">
                                             <i class="header__guest-decrease fas fa-minus"></i>
                                         </div>
-                                        <div class="header__guest-quantity">0</div>
-                                        <div class="header__guest-button-right">
+                                        <div id="counter1" class="header__guest-quantity">0</div>
+                                        <div id="increment1" class="header__guest-button-right">
                                             <i class="header__guest-increase fas fa-plus"></i>
                                         </div>
                                     </li>
@@ -197,11 +197,11 @@
                                             <span class="header__guest-name">Trẻ em</span>
                                             <span class="header__guest-description">Tuổi từ 2-12</span>
                                         </span>
-                                        <div class="header__guest-button-left">
+                                        <div id="decrement2" class="header__guest-button-left">
                                             <i class="header__guest-decrease fas fa-minus"></i>
                                         </div>
-                                        <div class="header__guest-quantity">0</div>
-                                        <div class="header__guest-button-right">
+                                        <div id="counter2" class="header__guest-quantity">0</div>
+                                        <div id="increment2" class="header__guest-button-right">
                                             <i class="header__guest-increase fas fa-plus"></i>
                                         </div>
                                     </li>
@@ -210,16 +210,16 @@
                                             <span class="header__guest-name">Trẻ sơ sinh</span>
                                             <span class="header__guest-description">Dưới 2 tuổi</span>
                                         </span>
-                                        <div class="header__guest-button-left">
+                                        <div id="decrement3" class="header__guest-button-left">
                                             <i class="header__guest-decrease fas fa-minus"></i>
                                         </div>
-                                        <div class="header__guest-quantity">0</div>
-                                        <div class="header__guest-button-right">
+                                        <div id="counter3" class="header__guest-quantity">0</div>
+                                        <div id="increment3" class="header__guest-button-right">
                                             <i class="header__guest-increase fas fa-plus"></i>
                                         </div>
                                     </li>
                                 </ul>
-                                <a href="" class="header__guest-delete">Xóa</a>
+                                <a href="#" class="header__guest-delete" id="delete">Xóa</a>
                             </div>
                         </div>
 
@@ -727,4 +727,83 @@
         </footer>
     </div>    
 </body>
+  <script>
+    // Get the selection element
+    var selection = document.getElementById("selection");
+
+    // Get the button that opens the selection
+    var dropdownButton = document.getElementById("dropdownButton");
+
+    // When the user clicks on the button, toggle the selection
+    dropdownButton.addEventListener("click", function() {
+    selection.classList.toggle("show");
+    });
+
+    // When the user clicks anywhere outside of the selection, close it
+    window.addEventListener("click", function(event) {
+        if (!event.target.matches("#dropdownButton") && !event.target.closest("#selection")) {
+          if (selection.classList.contains("show")) {
+            selection.classList.remove("show");
+          }
+        }
+      });
+
+
+      function createCounterButtons(counterId, buttonIncrementId, buttonDecrementId) {
+        var counter = document.getElementById(counterId);
+        var incrementButton = document.getElementById(buttonIncrementId);
+        var decrementButton = document.getElementById(buttonDecrementId);
+        var deleteButton = document.getElementById("delete");
+        // var buttonsContainer = document.getElementById(buttonsContainerId);
+        // var incrementButton = document.createElement("button");
+        // var decrementButton = document.createElement("button");
+        var count = 0;
+
+        if (count <= 0) {
+        decrementButton.style.cursor = "not-allowed";;
+        decrementButton.style.backgroundColor = "#fbfcfd";
+        decrementButton.style.color = "#d7d7d7";
+        }
+        // incrementButton.innerText = "Increment";
+        // decrementButton.innerText = "Decrement";
+
+        incrementButton.addEventListener("click", function() {
+          count++;
+          counter.innerText = count;
+
+          if (count > 0) {
+            decrementButton.style.removeProperty("cursor");
+            decrementButton.style.backgroundColor = "#f5f7fa";
+            decrementButton.style.color = "#717273";
+            }
+        });
+
+        decrementButton.addEventListener("click", function() {
+          if(count > 0) {
+            count--;
+            counter.innerText = count;
+          }
+
+          if (count <= 0) {
+            decrementButton.style.cursor = "not-allowed";;
+            decrementButton.style.backgroundColor = "#fbfcfd";
+            decrementButton.style.color = "#d7d7d7";
+            }
+        });
+
+        deleteButton.addEventListener("click", function() {
+          count = 0;
+          counter.innerText = count;
+        });
+
+        // buttonsContainer.appendChild(incrementButton);
+        // buttonsContainer.appendChild(decrementButton);
+      }
+
+      createCounterButtons("counter1", "increment1", "decrement1");
+      createCounterButtons("counter2", "increment2", "decrement2");
+      createCounterButtons("counter3", "increment3", "decrement3");
+ 
+      
+    </script>
 </html>
