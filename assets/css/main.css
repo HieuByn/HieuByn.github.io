@@ -1,4 +1,8 @@
 /* Header */
+.html {
+    scroll-behavior: smooth;
+}
+
 .app {
     overflow: hidden;
 }
@@ -270,9 +274,9 @@
     outline: none;
 }
 
-.header__guest-title:focus ~ .header__guest-selection {
+/* .header__guest-title:focus ~ .header__guest-selection {
     display: block;
-}    
+}     */
 
 .header__guest-selection {
     position: absolute;
@@ -285,6 +289,10 @@
     border-radius: 5px;
     display: none;
     cursor: default;
+}
+
+.show {
+    display: block;
 }
 
 .header__guest-list {
@@ -319,12 +327,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: not-allowed;
+    /* cursor: not-allowed; */
 }
 
 .header__guest-decrease {
     font-size: 1.2rem;
-    color: #d7d7d7;
+    /* color: #d7d7d7; */
 }
 
 .header__guest-button-right {
